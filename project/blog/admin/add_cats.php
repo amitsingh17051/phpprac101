@@ -40,9 +40,6 @@ if(isset($_POST['submit'])) {
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     	<ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link float-left" href="index.php">Dashboard</a>
-	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="add_post.php">Add post</a>
 	      </li>
@@ -52,7 +49,7 @@ if(isset($_POST['submit'])) {
     	</ul>
     	<ul class="navbar-nav ml-auto">
     	    <li class="nav-item">
-	        	<a class="nav-link" href="localhost/phpprac/project/blog">View BLog</a>
+	        	<a class="nav-link" href="../index.php">View BLog</a>
 	       </li>
 	       <li class="nav-item">
 	        	<a class="nav-link" href="logout.php">Logout</a>

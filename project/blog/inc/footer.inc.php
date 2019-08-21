@@ -2,7 +2,8 @@
 
 
 
-$query = 'select * from catogaries';
+$query = "SELECT DISTINCT cat.title, cat.id FROM catogaries AS cat INNER JOIN post AS p ON p.category = cat.id ";
+// $query = "select * from catogaries";
 $category = $db->select($query);
 
 
@@ -20,8 +21,8 @@ $category = $db->select($query);
 				<hr>	
 				<?php while($row = $category->fetch_assoc()): ?>
 				<ul class="category-list list-group mt-3">
-					<a href="category.php?id=<?php echo $row['id']; ?>" class="list-group-item"
-					style="text-decoration:none;"><?php echo $row['title']; ?></a>
+					
+					<a href="category.php?id=<?php echo $row['id']; ?>" class="list-group-item"><?php echo $row['title']; ?></a>
 				</ul>
 				<?php endwhile; ?>
 			</div>

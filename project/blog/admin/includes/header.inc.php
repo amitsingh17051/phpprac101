@@ -10,6 +10,10 @@ $post = $db->select($query);
 
 $query = "select * from catogaries";
 $cats = $db->select($query);
+
+// delete post
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,9 +34,6 @@ $cats = $db->select($query);
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
     	<ul class="navbar-nav mr-auto">
-	      <li class="nav-item active">
-	        <a class="nav-link float-left" href="index.php">Dashboard</a>
-	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="add_post.php">Add post</a>
 	      </li>
@@ -74,7 +75,7 @@ $cats = $db->select($query);
 					<?php while($row = $post->fetch_assoc()): ?>
 					<tr>
 				      <th><?php echo $row['id']; ?></th>
-				      <td><a href="edit_post.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a></td>
+				      <td><a href="edit_post.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a> <a name="delete" value="delete" href="index.php?id=<?php echo $row['id']; ?>" class="btn btn-sm text-danger">Delete</a></td>
 				      <td><?php echo $row['author']; ?></td>
 				      <td><?php echo $row['date']; ?></td>
 				    </tr>
@@ -98,7 +99,17 @@ $cats = $db->select($query);
 				      <th><?php echo $row['id']; ?></th>
 				      
 				      
-				      <td><?php echo $row['title']; ?></td>
+				      <td><a href="edit_cat.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a> <a name="delete" value="delete" href="index.php?id=<?php echo $row['id']; ?>" class="btn btn-sm text-danger">Delete</a></td>
+				      <?php
+				      	// delete category
+						if(!empty($_GET['id'])) {
+							$id = $_GET['id'];
+							$query = "delete from catogaries where id = $id";
+							$run = $db->delete($query);
+
+						}
+
+				      ?>
 				    </tr>
 					<?php endwhile; ?>
 				</tbody>
@@ -106,3 +117,21 @@ $cats = $db->select($query);
 
 
 		</div>
+
+<?php
+	
+	
+	// delete Post
+	
+	if(!empty($_GET['id'])) {
+		$id = $_GET['id'];
+		$query = "delete from post where id = $id";
+		$run = $db->delete($query);
+
+	}
+
+
+	
+	
+
+?>

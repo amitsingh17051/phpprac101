@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 include 'libs/database.php';
 include 'libs/config.php';
 
@@ -31,14 +33,22 @@ $post = $db->select($query);
 	        <a class="nav-link" href="index.php">Home</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="post.php">All post</a>
-	      </li>
-	      <li class="nav-item">
 	        <a class="nav-link" href="about.php">About</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="contact.php">Contact</a>
 	      </li>
+
+	      <?php
+	      	if(isset($_SESSION['email'])) {
+	      		echo '<a class="nav-link" href="admin/index.php">Dashboard</a>';
+	      	} else {
+	      		echo '<li class="nav-item">
+	        <a class="nav-link" href="admin/login.php">Login here</a>
+	      </li>';
+	      	}
+	      ?>
+	      
     	</ul>
    
   	</div>

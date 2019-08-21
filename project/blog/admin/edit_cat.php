@@ -5,9 +5,9 @@ include '../libs/config.php';
 $db = new Database();
 if(isset($_GET['id'])){
 	$id = $_GET['id'];
-	$query = "select * from post where id='$id'";
+	$query = "select * from catogaries where id='$id'";
 	$post = $db->select($query);
-	$single_post = $post->fetch_assoc();
+	$cat = $post->fetch_assoc();
 }
  
 
@@ -20,17 +20,12 @@ if(isset($_POST['update'])) {
 	
 	
 	$title = mysqli_real_escape_string($db->link, $_POST['title']);
-	$content = mysqli_real_escape_string($db->link, $_POST['content']);
-	$author = mysqli_real_escape_string($db->link, $_POST['author']);
-	$tags = mysqli_real_escape_string($db->link, $_POST['tags']);
-	$category = mysqli_real_escape_string($db->link, $_POST['category']);
 	$id = $_GET['id'];
 
-	if(empty($title) || empty($content) || empty($author) || empty($tags) | empty($category)) {
-		echo "All Fields Are Modetory";
+	if(empty($title)) {
+		echo "Fields Are Modetory";
 	} else {
-		$query = "update post set title='$title', content='$content', author='$author', tags='$tags', category='$category' where id='".$id."' ";
-
+		$query = "update catogaries set title='$title' where id='".$id."' ";
 		$run = $db->update($query);
 
 
@@ -84,41 +79,17 @@ if(isset($_POST['update'])) {
 
 
 <div class="container mt-5">
-	<h1 class="blog-header text-center">Add Post </h1>
+	<h1 class="blog-header text-center">Update Category </h1>
 	
 	<div class="row mt-5 ">
 		<div class="col-md-8 col-sm-12 col-xs-12">
 			<form action="" method="post" name="update_data">
 				<div class="form-group">
 					<label for="title">Title</label>
-					<input type="text" class="form-control" name="title" value="<?php echo $single_post['title'];?>">
-				</div>
-				<div class="form-group">
-					<label for="author">Author</label>
-					<input type="text" class="form-control" name="author" value="<?php echo $single_post['author'];?>">
-				</div>
-				<div class="form-group">
-					<label for="tags">Tags</label>
-					<input type="text" class="form-control" name="tags" value="<?php echo $single_post['tags'];?>">
-				</div>
-				<div class="form-group">
-					<label for="content">Content</label>
-					<textarea type="text" class="form-control" name="content" ><?php echo $single_post['content'];?></textarea> 
-				</div>
-				<div class="form-group">
-					<label for="category">Category</label>
-					
-					<select class="form-control" name="category" id="" >
-						<?php while($row = $cats->fetch_assoc()): ?>
-						<option value="<?php echo $row['id'];?>"><?php echo $row['title'];?></option>
-						<?php endwhile; ?>
-						
-						
-					</select>
-					
+					<input type="text" class="form-control" name="title" value="<?php echo $cat['title'];?>">
 				</div>
 
-				<button class="btn btn-lg btn-primary" name="update" value="amit">Update</button>
+				<button class="btn btn-lg btn-primary" name="update" value="update">Update</button>
 			</form>
 		</div>
 
