@@ -35,7 +35,7 @@ Making multiple child class from one parent class is called hierarchical inharit
 Like:
 class Father {} -> Parent Class
 class Son extends Father{} -> Child Class
-class Daughter extends Son{} -> Child Class
+class Daughter extends Father{} -> Child Class
 
  -->
 
